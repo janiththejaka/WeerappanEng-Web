@@ -1,9 +1,9 @@
 import { getProjectsAction } from "@/actions/project.actions";
 import ProjectsTable from "@/components/admin/projects/ProjectsTable";
+import Link from "next/link";
 
 export default async function ProjectsPage() {
 
-    
 
   const projects =
     await getProjectsAction();
@@ -22,6 +22,12 @@ export default async function ProjectsPage() {
       <ProjectsTable
         projects={projects}
       />
+
+      <Link
+        href="/admin/projects/new"
+      >
+        New Project
+      </Link>
 
     </div>
   );
