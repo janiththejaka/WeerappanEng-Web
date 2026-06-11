@@ -1,12 +1,67 @@
-// proxy.ts
-import { type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@/lib/supabase/proxy";
+import { createServerClient } from "@supabase/ssr";
 
+export async function proxy(
+  request: NextRequest
+) {
+  const response =
+    await updateSession(request);
 
+  const supabase =
+    createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll();
+          },
 
-export async function proxy(request: NextRequest) {
-  console.log("PROXY IS EXECUTING FOR:", request.nextUrl.pathname);
-  return await updateSession(request);
+          setAll() {},
+        },
+      }
+    );
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const pathname =
+    request.nextUrl.pathname;
+
+  const isAdminRoute =
+    pathname.startsWith("/admin");
+
+  const isLoginRoute =
+    pathname === "/admin/login";
+
+  if (
+    isAdminRoute &&
+    !isLoginRoute &&
+    !user
+  ) {
+    return NextResponse.redirect(
+      new URL(
+        "/admin/login",
+        request.url
+      )
+    );
+  }
+
+  if (
+    isLoginRoute &&
+    user
+  ) {
+    return NextResponse.redirect(
+      new URL(
+        "/admin/dashboard",
+        request.url
+      )
+    );
+  }
+
+  return response;
 }
 
 export const config = {
