@@ -35,3 +35,20 @@ export async function createProject(
 
   return data;
 }
+
+export async function getProjectById(
+  id: string
+) {
+  const { data, error } =
+    await supabase
+      .from("projects")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}

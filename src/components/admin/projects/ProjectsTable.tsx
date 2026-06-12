@@ -1,5 +1,6 @@
 import { Project }
 from "@/types/project";
+import Link from "next/dist/client/link";
 
 interface Props {
   projects: Project[];
@@ -18,6 +19,7 @@ export default function ProjectsTable({
           <th>Category</th>
           <th>Status</th>
           <th>Featured</th>
+          <th>Actions</th>
         </tr>
       </thead>
 
@@ -41,6 +43,13 @@ export default function ProjectsTable({
               {project.featured
                 ? "Yes"
                 : "No"}
+            </td>
+            <td>
+              <Link
+                href={`/admin/projects/${project.id}/edit`}
+              >
+                Edit
+              </Link>
             </td>
 
           </tr>
