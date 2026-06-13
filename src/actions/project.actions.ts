@@ -26,10 +26,7 @@ export async function createProjectAction(
 
   const { data: project, error } = await supabase
     .from("projects")
-    .insert({
-      ...data,
-      slug,
-    })
+    .insert({ ...data, slug,})
     .select()
     .single();
 
@@ -48,4 +45,31 @@ export async function getProjectByIdAction(
   await requireAdmin();
 
   return await getProjectById(id);
+}
+
+export async function updateProjectAction(
+  id: string,
+  data: CreateProjectDto
+) {
+  await requireAdmin();
+
+  const supabase = await createClient();
+
+  const slug = createSlug(data.title);
+
+  const { error } =
+    await supabase
+      .from("projects")
+      .update({...data, slug,})
+      .eq("id", id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/admin/projects");
+
+  revalidatePath(
+    `/admin/projects/${id}/edit`
+  );
 }

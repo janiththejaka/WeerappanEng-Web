@@ -8,7 +8,7 @@ export default function NewProjectPage() {
         Create Project
       </h1>
 
-      <ProjectForm />
+      <ProjectForm mode="create"/>
 
     </div>
   );

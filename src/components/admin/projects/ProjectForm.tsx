@@ -6,9 +6,16 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {projectSchema,ProjectFormData,} from "@/lib/validations/project.schema";
 import { PROJECT_CATEGORIES } from "@/types/projectCategories";
-import { createProjectAction } from "@/actions/project.actions";
+import { updateProjectAction,createProjectAction } from "@/actions/project.actions";
+import { Project } from "@/types/project";
 
-export default function ProjectForm() {
+
+interface ProjectFormProps {
+  mode: "create" | "edit";
+  project?: Project;
+}
+
+export default function ProjectForm({ mode, project }: ProjectFormProps) {
   const router = useRouter();
 
   const [isPending, startTransition] = useTransition();
@@ -22,32 +29,51 @@ export default function ProjectForm() {
     resolver: zodResolver(projectSchema),
 
     defaultValues: {
-      featured: false,
-      status: "ONGOING",
-      completion_date: null,
-    },
+  title: project?.title ?? "",
+  description: project?.description ?? "",
+  location: project?.location ?? "",
+  category: project?.category ?? "",
+  status: project?.status ?? "ONGOING",
+  completion_date:
+    project?.completion_date ?? null,
+  featured:
+    project?.featured ?? false,
+},
   });
 
-  const selectedStatus =
-    watch("status");
+  const selectedStatus = watch("status");
 
-  const onSubmit = (
-    data: ProjectFormData
-  ) => {
-    startTransition(async () => {
-      try {
-        await createProjectAction(data);
+  const onSubmit = (data: ProjectFormData) => {
 
-        router.push(
-          "/admin/projects"
+  startTransition(async () => {
+
+    try {
+
+      if (
+        mode === "edit" && project) {
+
+        await updateProjectAction(
+          project.id,
+          data
         );
 
-        router.refresh();
-      } catch (error) {
-        console.error(error);
+      } else {
+
+        await createProjectAction(data);
+
       }
-    });
-  };
+
+      router.push( "/admin/projects");
+
+      router.refresh();
+
+    } catch (error) {
+
+      console.error(error);
+
+    }
+  });
+};
 
   return (
     <form
@@ -174,9 +200,8 @@ export default function ProjectForm() {
         disabled={isPending}
         className="border px-4 py-2"
       >
-        {isPending
-          ? "Creating..."
-          : "Create Project"}
+        {isPending ? "Creating...": "Create Project"}
+        {isPending ? (mode === "create" ? "Creating...": "Updating...") : (mode === "create" ? "Create Project": "Update Project")}
       </button>
     </form>
   );
