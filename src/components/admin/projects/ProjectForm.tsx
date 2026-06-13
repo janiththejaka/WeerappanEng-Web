@@ -200,7 +200,6 @@ export default function ProjectForm({ mode, project }: ProjectFormProps) {
         disabled={isPending}
         className="border px-4 py-2"
       >
-        {isPending ? "Creating...": "Create Project"}
         {isPending ? (mode === "create" ? "Creating...": "Updating...") : (mode === "create" ? "Create Project": "Update Project")}
       </button>
     </form>
