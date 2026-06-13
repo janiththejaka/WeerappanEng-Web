@@ -73,3 +73,24 @@ export async function updateProjectAction(
     `/admin/projects/${id}/edit`
   );
 }
+
+export async function deleteProjectAction(
+  id: string
+) {
+  await requireAdmin();
+
+  const supabase =
+    await createClient();
+
+  const { error } =
+    await supabase
+      .from("projects")
+      .delete()
+      .eq("id", id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/admin/projects");
+}
