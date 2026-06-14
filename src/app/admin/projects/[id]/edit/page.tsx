@@ -1,4 +1,5 @@
-import {getProjectByIdAction,} from "@/actions/project.actions";
+import { getProjectByIdAction, } from "@/actions/project.actions";
+import CoverImageUpload from "@/components/admin/projects/CoverImageUpload";
 import ProjectForm from "@/components/admin/projects/ProjectForm";
 
 export default async function EditProjectPage({
@@ -18,17 +19,22 @@ export default async function EditProjectPage({
     );
 
   return (
-  <div className="p-6">
+    <div className="p-6">
 
-    <h1 className="text-2xl font-bold mb-6">
-      Edit Project
-    </h1>
+      <h1 className="text-2xl font-bold mb-6">
+        Edit Project
+      </h1>
 
-    <ProjectForm
-      mode="edit"
-      project={project}
-    />
+      <ProjectForm mode="edit" project={project} />
 
-  </div>
-);
+      <hr className="my-8" />
+
+      <h2>
+        Cover Image
+      </h2>
+
+      <CoverImageUpload projectId={project.id} />
+
+    </div>
+  );
 }
