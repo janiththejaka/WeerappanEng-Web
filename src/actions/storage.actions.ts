@@ -159,3 +159,50 @@ function validateImage(file: File) {
     );
   }
 }
+
+export async function deleteGalleryImageAction(
+  imageId: string
+) {
+  await requireAdmin();
+
+  const supabase =
+    await createClient();
+
+  const { data, error } =
+    await supabase
+      .from("project_images")
+      .select("*")
+      .eq("id", imageId)
+      .single();
+
+  if (error) {
+    throw error;
+  }
+
+  const imageUrl =
+    data.image_url;
+
+  const filePath =
+    imageUrl.split(
+      "/project-images/"
+    )[1];
+
+  await supabase.storage
+    .from("project-images")
+    .remove([filePath]);
+
+  const {
+    error: deleteError,
+  } = await supabase
+    .from("project_images")
+    .delete()
+    .eq("id", imageId);
+
+  if (deleteError) {
+    throw deleteError;
+  }
+
+  revalidatePath(
+    "/admin/projects"
+  );
+}
