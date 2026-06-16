@@ -8,6 +8,7 @@ import { createSlug } from "@/lib/utils/slug";
 import { revalidatePath } from "next/cache";
 import { CreateProjectDto } from "@/types/project";
 import { getProjectById, getProjects } from "@/services/project.service";
+import { getProjectImages } from "@/services/project-image.service";
 
 export async function getProjectsAction() {
   await requireAdmin();
@@ -93,4 +94,14 @@ export async function deleteProjectAction(
   }
 
   revalidatePath("/admin/projects");
+}
+
+export async function getProjectImagesAction(
+  projectId: string
+) {
+  await requireAdmin();
+
+  return await getProjectImages(
+    projectId
+  );
 }
