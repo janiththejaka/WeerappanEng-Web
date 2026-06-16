@@ -11,6 +11,7 @@ export async function uploadCoverImageAction(
   await requireAdmin();
 
   const file = formData.get("file") as File;
+  validateImage(file);
 
   if (!file) {
     throw new Error( "No file selected");
@@ -73,6 +74,7 @@ export async function uploadGalleryImageAction(
   await requireAdmin();
 
   const file = formData.get("file") as File;
+  validateImage(file);
 
   if (!file) {
     throw new Error( "No file selected");
@@ -125,4 +127,35 @@ export async function uploadGalleryImageAction(
   revalidatePath(`/admin/projects/${projectId}/edit`);
 
   return publicUrl;
+}
+
+function validateImage(file: File) {
+  if (!file || file.size === 0) {
+    throw new Error(
+      "Please select an image."
+    );
+  }
+
+  const allowedTypes = [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+  ];
+
+  if (
+    !allowedTypes.includes(file.type)
+  ) {
+    throw new Error(
+      "Only JPG, PNG and WEBP images are allowed."
+    );
+  }
+
+  const MAX_SIZE =
+    5 * 1024 * 1024;
+
+  if (file.size > MAX_SIZE) {
+    throw new Error(
+      "Image must be under 5MB."
+    );
+  }
 }

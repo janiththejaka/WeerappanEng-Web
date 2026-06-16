@@ -1,11 +1,8 @@
-import { supabase }
-from "@/lib/supabase/client";
-
-import {
-  CreateProjectDto,
-} from "@/types/project";
+import { createClient } from "@/lib/supabase/server";
+import {CreateProjectDto,} from "@/types/project";
 
 export async function getProjects() {
+  const supabase = await createClient();
   const { data, error } =
     await supabase
       .from("projects")
@@ -24,6 +21,7 @@ export async function createProject(
     slug: string;
   }
 ) {
+    const supabase = await createClient();
   const { data, error } =
     await supabase
       .from("projects")
@@ -39,6 +37,7 @@ export async function createProject(
 export async function getProjectById(
   id: string
 ) {
+  const supabase = await createClient();
   const { data, error } =
     await supabase
       .from("projects")
