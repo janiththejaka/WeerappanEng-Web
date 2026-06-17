@@ -1,23 +1,19 @@
-import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
-import Link from "next/dist/client/link";
+import Link from "next/link";
+import StatCard from "@/components/admin/dashboard/StatCard";
+
+import {getDashboardStatsAction,} from "@/actions/dashboard.actions";
 
 export default async function DashboardPage() {
-  const supabase =
-    await createClient();
-
-  const { data: { user }, } = await supabase.auth.getUser();
-
-  console.log( "Server User:", user );
-
-  if (!user) { redirect("/admin/login"); }
+  const stats = await getDashboardStatsAction();
 
   return (
-     <div>
+    <div>
+
       <h1
         className="
         text-3xl
         font-bold
+        mb-8
         "
       >
         Dashboard
@@ -25,20 +21,46 @@ export default async function DashboardPage() {
 
       <div
         className="
-        mt-8
+        grid
+        md:grid-cols-4
+        gap-4
         "
       >
+        <StatCard
+          title="Total Projects"
+          value={stats.totalProjects}
+        />
+
+        <StatCard
+          title="Featured Projects"
+          value={stats.featuredProjects}
+        />
+
+        <StatCard
+          title="Ongoing Projects"
+          value={stats.ongoingProjects}
+        />
+
+        <StatCard
+          title="Completed Projects"
+          value={stats.completedProjects}
+        />
+      </div>
+
+      <div className="mt-8">
         <Link
           href="/admin/projects"
           className="
           border
           px-4
           py-2
+          inline-block
           "
         >
           Manage Projects
         </Link>
       </div>
+
     </div>
   );
 }
