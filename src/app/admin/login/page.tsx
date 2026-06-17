@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 import { loginSchema, LoginFormData,} from "@/lib/validations/login.schema";
 import { login } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
@@ -26,11 +27,17 @@ export default function LoginPage() {
                 data.password
             );
 
+            toast.success(
+                "Login successful"
+            );
+
             router.push(
                 "/admin/dashboard"
             );
         } catch (error) {
-            console.error(error);
+            toast.error(
+                "Invalid email or password"
+            );
         }
     };
 

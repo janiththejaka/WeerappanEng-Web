@@ -1,6 +1,7 @@
 "use client";
 
 import {useTransition,} from "react";
+import { toast } from "sonner";
 import {uploadCoverImageAction,} from "@/actions/storage.actions";
 
 interface Props {
@@ -15,7 +16,18 @@ export default function CoverImageUpload({projectId, currentImage}: Props) {
 
   const handleSubmit =(formData:FormData) => {
 
-    startTransition(async () => {await uploadCoverImageAction(projectId, formData);});
+    startTransition(async () => {
+      try {
+        await uploadCoverImageAction(projectId, formData);
+        toast.success(
+          "Cover image uploaded successfully"
+        );
+      } catch (error) {
+        toast.error(
+          "Failed to upload cover image"
+        );
+      }
+    });
   };
 
     return (

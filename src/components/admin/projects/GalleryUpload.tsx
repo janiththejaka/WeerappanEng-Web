@@ -1,6 +1,7 @@
 "use client";
 
 import {useTransition,} from "react";
+import { toast } from "sonner";
 import {uploadGalleryImageAction,} from "@/actions/storage.actions";
 
 interface Props {
@@ -14,7 +15,18 @@ export default function GalleryUpload({projectId,}: Props) {
 
   const handleSubmit =( formData:FormData) => {
 
-    startTransition(async () => {await uploadGalleryImageAction(projectId, formData);});
+    startTransition(async () => {
+      try {
+        await uploadGalleryImageAction(projectId, formData);
+        toast.success(
+          "Gallery image uploaded successfully"
+        );
+      } catch (error) {
+        toast.error(
+          "Failed to upload gallery image"
+        );
+      }
+    });
   };
 
     return (

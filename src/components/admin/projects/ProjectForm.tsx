@@ -4,6 +4,7 @@ import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 import {projectSchema,ProjectFormData,} from "@/lib/validations/project.schema";
 import { PROJECT_CATEGORIES } from "@/types/projectCategories";
 import { updateProjectAction,createProjectAction } from "@/actions/project.actions";
@@ -57,9 +58,17 @@ export default function ProjectForm({ mode, project }: ProjectFormProps) {
           data
         );
 
+        toast.success(
+          "Project updated successfully"
+        );
+
       } else {
 
         await createProjectAction(data);
+
+        toast.success(
+          "Project created successfully"
+        );
 
       }
 
@@ -69,7 +78,11 @@ export default function ProjectForm({ mode, project }: ProjectFormProps) {
 
     } catch (error) {
 
-      console.error(error);
+      toast.error(
+        mode === "edit"
+          ? "Failed to update project"
+          : "Failed to create project"
+      );
 
     }
   });

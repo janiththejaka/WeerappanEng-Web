@@ -1,7 +1,6 @@
 "use client";
 
-import { useTransition } from "react";
-
+import { useTransition } from "react";import { toast } from "sonner";
 import {deleteGalleryImageAction,} from "@/actions/storage.actions";
 
 interface Props {
@@ -23,9 +22,18 @@ export default function DeleteGalleryImageButton({
       onClick={() =>
         startTransition(
           async () => {
-            await deleteGalleryImageAction(
-              imageId
-            );
+            try {
+              await deleteGalleryImageAction(
+                imageId
+              );
+              toast.success(
+                "Gallery image deleted successfully"
+              );
+            } catch (error) {
+              toast.error(
+                "Failed to delete gallery image"
+              );
+            }
           }
         )
       }

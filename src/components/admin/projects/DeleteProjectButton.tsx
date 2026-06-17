@@ -2,6 +2,7 @@
 
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 import {
   deleteProjectAction,
@@ -37,11 +38,17 @@ export default function DeleteProjectButton({
           projectId
         );
 
+        toast.success(
+          "Project deleted successfully"
+        );
+
         router.refresh();
 
       } catch (error) {
 
-        console.error(error);
+        toast.error(
+          "Failed to delete project"
+        );
 
       }
     });
