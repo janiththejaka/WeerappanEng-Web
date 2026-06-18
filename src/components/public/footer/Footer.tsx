@@ -15,7 +15,7 @@ export default function Footer() {
         "
       >
         <p>
-          © 2026 Company Name.
+          © 2026 Weerappan Engineering.
           All Rights Reserved.
         </p>
       </div>
