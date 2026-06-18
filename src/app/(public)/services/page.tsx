@@ -1,3 +1,13 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title:
+    "Services | Weerppan Engineering",
+
+  description:
+    "Engineering, Design and Construction Services",
+};
+
 export default function ServicesPage() {
   const services = [
     {

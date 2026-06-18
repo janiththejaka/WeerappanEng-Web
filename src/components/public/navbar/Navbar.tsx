@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NavLink from "./NavLink";
 
 export default function Navbar() {
   return (
@@ -16,9 +17,9 @@ export default function Navbar() {
         justify-between
         "
       >
-        <Link href="/">
+        <NavLink href="/">
           Company Logo
-        </Link>
+        </NavLink>
 
         <nav
           className="
@@ -26,25 +27,25 @@ export default function Navbar() {
           gap-6
           "
         >
-          <Link href="/">
+          <NavLink href="/">
             Home
-          </Link>
+          </NavLink>
 
-          <Link href="/about">
+          <NavLink href="/about">
             About
-          </Link>
+          </NavLink>
 
-          <Link href="/services">
+          <NavLink href="/services">
             Services
-          </Link>
+          </NavLink>
 
-          <Link href="/portfolio">
+          <NavLink href="/portfolio">
             Portfolio
-          </Link>
+          </NavLink>
 
-          <Link href="/contact">
+          <NavLink href="/contact">
             Contact
-          </Link>
+          </NavLink>
         </nav>
       </div>
     </header>

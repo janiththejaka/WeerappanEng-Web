@@ -1,3 +1,12 @@
+import { Metadata }from "next";
+
+export const metadata: Metadata = {
+  title:
+    "About Us | Weerppan Engineering",
+
+  description:
+    "Engineering, Design and Construction Services",
+};
 export default function AboutPage() {
   return (
     <section

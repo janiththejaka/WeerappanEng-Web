@@ -1,6 +1,14 @@
 import PortfolioClient from "@/components/public/portfolio/PortfolioClient";
-
 import {getPublicProjectsAction,} from "@/actions/public.actions";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title:
+    "Our Projects | Weerappan Engineering",
+
+  description:
+    "Engineering, Design and Construction Services",
+};
 
 export default async function PortfolioPage() {
   const projects =

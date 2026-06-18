@@ -77,6 +77,31 @@ export default async function ProjectDetailsPage({
   mt-12
   "
 >
+    <div
+  className="
+  grid
+  md:grid-cols-3
+  gap-6
+  mt-8
+  "
+>
+
+  <div className="border p-4 rounded-lg">
+    <h3>Status</h3>
+    <p>{project.status}</p>
+  </div>
+
+  <div className="border p-4 rounded-lg">
+    <h3>Category</h3>
+    <p>{project.category}</p>
+  </div>
+
+  <div className="border p-4 rounded-lg">
+    <h3>Location</h3>
+    <p>{project.location}</p>
+  </div>
+
+</div>
   {gallery.map(image => (
     <img
       key={image.id}

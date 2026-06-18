@@ -1,3 +1,12 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title:
+    "Contact Us | Weerappan Engineering",
+
+  description:
+    "Engineering, Design and Construction Services",
+};
 export default function ContactPage() {
   return (
     <section
