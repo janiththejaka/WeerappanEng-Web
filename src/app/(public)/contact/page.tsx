@@ -1,17 +1,11 @@
-import { Metadata } from "next";
+import ContactForm from
+"@/components/public/contact/ContactForm";
 
-export const metadata: Metadata = {
-  title:
-    "Contact Us | Weerappan Engineering",
-
-  description:
-    "Engineering, Design and Construction Services",
-};
 export default function ContactPage() {
   return (
     <section
       className="
-      max-w-5xl
+      max-w-7xl
       mx-auto
       px-6
       py-20
@@ -21,24 +15,50 @@ export default function ContactPage() {
         className="
         text-5xl
         font-bold
-        mb-10
+        mb-12
         "
       >
         Contact Us
       </h1>
 
-      <div className="space-y-4">
-        <p>
-          📍 Company Address
-        </p>
+      <div
+        className="
+        grid
+        md:grid-cols-2
+        gap-12
+        "
+      >
+        <div>
+          <h2
+            className="
+            text-2xl
+            font-semibold
+            mb-6
+            "
+          >
+            Get In Touch
+          </h2>
 
-        <p>
-          📞 +94 XX XXX XXXX
-        </p>
+          <div className="space-y-4">
+            <p>
+              📍 Company Address
+            </p>
 
-        <p>
-          ✉ info@company.com
-        </p>
+            <p>
+              📞 Company Phone
+            </p>
+
+            <p>
+              ✉ Company Email
+            </p>
+
+            <p>
+              🕒 Mon - Sat
+            </p>
+          </div>
+        </div>
+
+        <ContactForm />
       </div>
     </section>
   );
