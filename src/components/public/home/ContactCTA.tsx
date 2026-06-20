@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ContactForm from "../contact/ContactForm";
 
 export default function ContactCTA() {
   return (
@@ -23,6 +24,7 @@ export default function ContactCTA() {
         >
           Let's Build Together
         </h2>
+        <ContactForm />
 
         <Link
           href="/contact"
