@@ -8,6 +8,7 @@ export default async function DashboardPage() {
   const messages = await getMessagesAction();
   const totalMessages = messages.length;
 
+
   return (
     <div className="space-y-8">
       

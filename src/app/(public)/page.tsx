@@ -6,17 +6,19 @@ import ContactCTA from "@/components/public/home/ContactCTA";
 import Hero from "@/components/public/home/Hero";
 
 export default function HomePage() {
+
   return (
     <>
       <Hero />
 
-  <AboutPreview />
+      <AboutPreview />
 
-  <ServicesPreview />
+      <ServicesPreview />
 
-  <FeaturedProjects />
+      <FeaturedProjects />
 
-  <ContactCTA />
+      <ContactCTA />
     </>
+
   );
 }

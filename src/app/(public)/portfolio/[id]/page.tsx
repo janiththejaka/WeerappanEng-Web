@@ -1,7 +1,5 @@
-import {
-  getProjectByIdAction,
-  getProjectGalleryAction,
-} from "@/actions/public.actions";
+import {getProjectByIdAction, getProjectGalleryAction} from "@/actions/public.actions";
+import { notFound } from "next/navigation";
 
 export default async function ProjectDetailsPage({
   params,
@@ -13,13 +11,13 @@ export default async function ProjectDetailsPage({
 
   const { id } = await params;
 
-  const project =
-    await getProjectByIdAction(id);
+  const project = await getProjectByIdAction(id);
 
-  const gallery =
-    await getProjectGalleryAction(
-      project.id
-    );
+  if (!project) {
+    notFound();
+  }
+
+  const gallery = await getProjectGalleryAction(project.id);
 
   return (
     <section

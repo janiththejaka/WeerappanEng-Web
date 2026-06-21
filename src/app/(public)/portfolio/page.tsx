@@ -1,6 +1,7 @@
 import PortfolioClient from "@/components/public/portfolio/PortfolioClient";
 import { getPublicProjectsAction } from "@/actions/public.actions";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Our Projects | Weerappan Engineering",
@@ -9,6 +10,10 @@ export const metadata: Metadata = {
 
 export default async function PortfolioPage() {
   const projects = await getPublicProjectsAction();
+
+  if (!projects || projects.length === 0) {
+    notFound();
+  }
 
   return (
     <section className="bg-slate-50 min-h-screen pb-24">
