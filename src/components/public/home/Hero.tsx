@@ -37,9 +37,9 @@ export default function Hero() {
           </p>
 
           <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-            We <span className="text-orange-400">"Build"</span> <br className="hidden md:block" />
+            We <span className="text-orange-400">Build</span> <br className="hidden md:block" />
             the foundations for <br className="hidden md:block" />
-            Better <span className="text-orange-400">"Tomorrow"</span>
+            Better <span className="text-orange-400">Tomorrow</span>
           </h1>
 
           <p className="text-slate-300 text-lg mb-10 max-w-2xl leading-relaxed">

@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { loginSchema, LoginFormData,} from "@/lib/validations/login.schema";
+import { loginSchema, LoginFormData, } from "@/lib/validations/login.schema";
 import { login } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -23,7 +23,7 @@ export default function LoginPage() {
         try {
             await login(data.email, data.password);
             toast.success("Login successful");
-            router.push("/admin/dashboard");
+            window.location.href = "/admin/dashboard";
         } catch (error) {
             toast.error("Invalid email or password");
         }
@@ -36,12 +36,12 @@ export default function LoginPage() {
             <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[60%] rounded-full bg-secondary/10 blur-[100px] pointer-events-none" />
 
             <div className="w-full max-w-md bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-slate-100 relative z-10">
-                
+
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/5 text-primary mb-6">
-                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-                         <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
-                       </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                        </svg>
                     </div>
                     <h1 className="text-3xl font-extrabold text-primary">
                         Admin Access
@@ -50,7 +50,7 @@ export default function LoginPage() {
                 </div>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
-                    
+
                     <div>
                         <label className="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
                         <input
