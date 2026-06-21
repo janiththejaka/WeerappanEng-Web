@@ -44,7 +44,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-primary">Phone Number</p>
-                  <p className="text-slate-600 text-sm mt-1">+1 (555) 123-4567<br/>+1 (555) 987-6543 (Support)</p>
+                  <p className="text-slate-600 text-sm mt-1">071 273 9780<br/>+94 71 273 9780</p>
                 </div>
               </div>
 
@@ -54,7 +54,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-primary">Email Address</p>
-                  <p className="text-slate-600 text-sm mt-1">info@weerappaneng.com</p>
+                  <p className="text-slate-600 text-sm mt-1">weerappan.eng@gmail.com</p>
                 </div>
               </div>
 

@@ -28,7 +28,7 @@ export default function ContactCTA() {
               </div>
               <div>
                 <p className="text-sm text-slate-400">Call Us Anywhere</p>
-                <p className="font-semibold text-lg">+1 (555) 123-4567</p>
+                <p className="font-semibold text-lg">071 273 9780<br/>+94 71 273 9780</p>
               </div>
             </div>
             
@@ -40,7 +40,7 @@ export default function ContactCTA() {
               </div>
               <div>
                 <p className="text-sm text-slate-400">Email Us</p>
-                <p className="font-semibold text-lg">info@weerappaneng.com</p>
+                <p className="font-semibold text-lg">weerappan.eng@gmail.com</p>
               </div>
             </div>
           </div>

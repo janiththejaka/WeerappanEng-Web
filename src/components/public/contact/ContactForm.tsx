@@ -31,7 +31,7 @@ export default function ContactForm() {
     }
   };
 
-  const inputClasses = "w-full bg-white/60 border border-white/40 focus:border-secondary focus:ring-2 focus:ring-secondary/20 rounded-xl p-4 text-slate-800 placeholder-slate-400 backdrop-blur-sm transition-all duration-300 outline-none";
+  const inputClasses = "w-full bg-white/60 border border-slate-300 focus:border-secondary focus:ring-2 focus:ring-secondary/20 rounded-xl p-4 text-slate-800 placeholder-slate-600 backdrop-blur-sm transition-all duration-300 outline-none";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 text-left">
