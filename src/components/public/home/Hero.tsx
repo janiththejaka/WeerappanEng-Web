@@ -4,21 +4,22 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image 
-          src="/hero-bg.png" 
-          alt="Modern construction site" 
-          fill 
-          priority
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-primary/70 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/5 to-transparent" />
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0 bg-primary">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-40"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full mt-10 md:mt-0">
-        <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-1000 glass-dark p-8 md:p-12 rounded-2xl">
+        <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
           <p className="text-secondary font-semibold tracking-widest uppercase text-sm mb-4">
             Engineering • Design • Construction
           </p>
